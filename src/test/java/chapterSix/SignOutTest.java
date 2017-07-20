@@ -1,22 +1,14 @@
 package chapterSix;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import testcases.TestShopScenario;
 
-public class SignOutTest {
+public class SignOutTest extends TestShopScenario {
 
     @Test
     public void SignOut(){
-
-        ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
-
-        driver.manage().window().maximize();
-        driver.get("https://techblog.polteq.com/testshop/index.php");
 
         driver.findElement(By.className("login")).click();
         driver.findElement(By.id("email")).sendKeys("tester@test.com");
@@ -33,8 +25,6 @@ public class SignOutTest {
 
         Assertions.assertThat(driver.findElement(By.cssSelector("a.login")).isDisplayed())
                 .as("Sign in button is not found on the page.").isTrue();
-
-        driver.quit();
 
     }
 }
