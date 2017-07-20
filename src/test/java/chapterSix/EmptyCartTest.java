@@ -17,7 +17,7 @@ public class EmptyCartTest extends TestShopScenario{
         Boolean isEmpty = driver.findElement(By.xpath("//span[contains(text(), '(empty)')]")).isDisplayed();
 
         //if cart is empty, add item to cart
-        if (isEmpty ==  true){
+        if (isEmpty){
             fillCart();
         }
 
@@ -32,7 +32,7 @@ public class EmptyCartTest extends TestShopScenario{
 
     }
 
-    public void fillCart(){
+    private void fillCart(){
         //Click on ipod near tags
         driver.findElement(By.cssSelector("a[title='More about ipod']")).click();
 
