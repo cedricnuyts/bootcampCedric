@@ -2,20 +2,37 @@ package chapterSix;
 
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import testcases.TestShopScenario;
 
-public class FillCartTest extends TestShopScenario {
+public class EmptyCartTest extends TestShopScenario{
 
     @Test
-    public void fillCart(){
+    public void emptyCart() throws InterruptedException {
 
         //check if cart is empty
         Boolean isEmpty = driver.findElement(By.xpath("//span[contains(text(), '(empty)')]")).isDisplayed();
+
+        //if cart is empty, add item to cart
+        if (isEmpty ==  true){
+            fillCart();
+        }
+
+        //go to shopping cart
+        driver.findElement(By.cssSelector("a[title='View my shopping cart']")).click();
+
+        //remove item
+        driver.findElement(By.className("icon-trash")).click();
+
+        //check if cart is empty
         Assertions.assertThat(isEmpty).as("Cart is not empty.").isTrue();
 
+    }
+
+    public void fillCart(){
         //Click on ipod near tags
         driver.findElement(By.cssSelector("a[title='More about ipod']")).click();
 
@@ -29,14 +46,10 @@ public class FillCartTest extends TestShopScenario {
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span[title='Continue shopping']")));
 
+        //If the wait above does not work, use sleep
+        //Thread.sleep(5000);
+
         //Click on continue shopping
         driver.findElement(By.cssSelector("span[title='Continue shopping']")).click();
-
-        //check if cart has 1 item
-        String strNumberOfItems = driver.findElement(By.cssSelector("span.ajax_cart_quantity")).getText();
-        int intNumberOfItems = Integer.parseInt(strNumberOfItems);
-        Assertions.assertThat(intNumberOfItems).as("The cart is empty.").isNotEqualTo(0);
-        Assertions.assertThat(intNumberOfItems).as("There is more than 1 item in the cart.").isEqualTo(1);
-
     }
 }
