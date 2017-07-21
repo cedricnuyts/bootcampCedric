@@ -3,7 +3,6 @@ package chapterSix;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import testcases.TestShopScenario;
 
@@ -26,7 +25,6 @@ public class FillCartTest extends TestShopScenario {
         driver.findElement(By.id("add_to_cart")).click();
 
         //Wait until "Continue shopping" is clickable
-        WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span[title='Continue shopping']")));
 
         //Click on continue shopping

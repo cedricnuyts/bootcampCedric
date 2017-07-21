@@ -17,8 +17,8 @@ public class FirstSeleniumTest {
         driver.get("https://techblog.polteq.com/testshop/index.php");
 
         driver.findElement(By.className("login")).click();
-        driver.findElement(By.id("email")).sendKeys("tester@test.com");
-        driver.findElement(By.id("passwd")).sendKeys("1qazxsw2");
+        driver.findElement(By.id("email")).sendKeys("cedric.nuyts@gmail.com");
+        driver.findElement(By.id("passwd")).sendKeys("abc123!");
         driver.findElement(By.id("SubmitLogin")).click();
 
         Boolean signOutKnop = driver.findElement(By.cssSelector("a.logout")).isDisplayed();
