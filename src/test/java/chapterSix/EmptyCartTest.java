@@ -13,7 +13,7 @@ public class EmptyCartTest extends TestShopScenario{
 
         //check if cart is empty
         //if cart is empty, add item to cart
-        if (driver.findElement(By.xpath("//span[contains(text(), '(empty)')]")).isDisplayed()){
+        if (driver.findElement(By.xpath(".//span[contains(text(), '(empty)')]")).isDisplayed()){
             fillCart();
         }
 
@@ -24,10 +24,10 @@ public class EmptyCartTest extends TestShopScenario{
         driver.findElement(By.className("icon-trash")).click();
 
         //wait for alert to be visible
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(), '(empty)')]")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//span[contains(text(), '(empty)')]")));
 
         //check if cart is empty
-        Assertions.assertThat(driver.findElement(By.xpath("//span[contains(text(), '(empty)')]")).isDisplayed())
+        Assertions.assertThat(driver.findElement(By.xpath(".//span[contains(text(), '(empty)')]")).isDisplayed())
                 .as("Cart is not empty.").isTrue();
 
     }
@@ -37,7 +37,7 @@ public class EmptyCartTest extends TestShopScenario{
         driver.findElement(By.cssSelector("a[title='More about ipod']")).click();
 
         //Click on ipod shuffle name
-        driver.findElement(By.xpath("//a[contains(text(), 'iPod shuffle')]")).click();
+        driver.findElement(By.xpath(".//a[contains(text(), 'iPod shuffle')]")).click();
 
         //Click on Add to cart
         driver.findElement(By.id("add_to_cart")).click();

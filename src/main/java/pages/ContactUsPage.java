@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ContactUsPage {
 
@@ -39,7 +41,7 @@ public class ContactUsPage {
 
     public void fillInContactForm(String email, String orderReference, String message){
 
-        //Hardcoded at the moment
+        //SELECTBOX is hardcoded at the moment
         //xPath = .//*[@id='id_contact']/option[2] --- Rework this to based on text in a variable
         Select subjectHeading = new Select(driver.findElement(By.cssSelector("select#id_contact")));
         subjectHeading.selectByVisibleText("Customer service");
@@ -48,5 +50,12 @@ public class ContactUsPage {
         orderReferenceField.sendKeys(orderReference);
         messageTextField.sendKeys(message);
         submitButton.click();
+    }
+
+    public String getAlertMessage(){
+        WebElement alertMessageSuccessfully = (new WebDriverWait(driver,10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".alert.alert-success")));
+
+        return alertMessageSuccessfully.getText();
     }
 }
