@@ -21,14 +21,14 @@ public class TestShopScenario {
         //init wait for explicit
         wait = new WebDriverWait(driver,10);
 
-        // open the website
+        //Maximize the window and open the website
         driver.manage().window().maximize();
         driver.get("https://techblog.polteq.com/testshop/index.php");
     }
 
     @AfterMethod
     public void tearDown(){
-
+        //Close the driver
         driver.quit();
     }
 
