@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 import testcases.TestShopScenario;
 
 import java.util.List;
@@ -13,12 +12,13 @@ import java.util.concurrent.TimeUnit;
 
 public class HomeworkTest extends TestShopScenario {
 
-    //Initialize the row and column
-    public int rowToDelete;
-    public int columnToDelete;
 
     @Test
     public void Homework() {
+
+        //Initialize the row and column
+        int rowToDelete;
+        int columnToDelete = 0;
 
         //Define the string that you want to delete from the web table
         String itemToDelete = "iPod Nano";
