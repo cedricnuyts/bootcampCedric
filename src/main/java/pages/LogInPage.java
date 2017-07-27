@@ -16,7 +16,13 @@ public class LogInPage {
     @FindBy(css = "#email")
     private WebElement emailTextField;
 
-    public LogInPage(WebDriver driver){
+    @FindBy(css = "#passwd")
+    private WebElement passwdTextField;
+
+    @FindBy(css = "#SubmitLogin")
+    private WebElement submitLoginButton;
+
+    public LogInPage(WebDriver driver) {
         this.driver = driver;
         //this call sets the WebElements
         PageFactory.initElements(driver, this);
@@ -26,4 +32,14 @@ public class LogInPage {
     *****************************************************
     * */
 
+    public void login(String user, String passwd){
+        //Fill in the email
+        emailTextField.sendKeys(user);
+
+        //Fill in the password
+        passwdTextField.sendKeys(passwd);
+
+        //Click on the submit button
+        submitLoginButton.click();
+    }
 }

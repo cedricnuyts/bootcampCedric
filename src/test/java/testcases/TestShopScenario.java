@@ -29,7 +29,7 @@ public class TestShopScenario {
     @AfterMethod
     public void tearDown(){
         //Close the driver
-        driver.quit();
+        //driver.quit();
     }
 
 }

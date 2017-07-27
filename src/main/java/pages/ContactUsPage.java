@@ -29,6 +29,9 @@ public class ContactUsPage {
     @FindBy(css = "#submitMessage")
     private WebElement submitButton;
 
+    @FindBy(css = "select#id_contact")
+    private Select subjectHeadingSelectBox;
+
     public ContactUsPage(WebDriver driver){
         this.driver = driver;
         //this call sets the WebElements
@@ -39,23 +42,45 @@ public class ContactUsPage {
     *****************************************************
     * */
 
-    public void fillInContactForm(String email, String orderReference, String message){
+    public void fillInContactForm(String subject, String email, String orderReference, String message){
+
 
         //SELECTBOX is hardcoded at the moment
-        //xPath = .//*[@id='id_contact']/option[2] --- Rework this to based on text in a variable
         Select subjectHeading = new Select(driver.findElement(By.cssSelector("select#id_contact")));
         subjectHeading.selectByVisibleText("Customer service");
+
+        //Select "Customer service" as header subject
+        //subjectHeadingSelectBox.selectByVisibleText(subject);
 
         emailTextField.sendKeys(email);
         orderReferenceField.sendKeys(orderReference);
         messageTextField.sendKeys(message);
+    }
+
+    public void sendContactForm(){
+        //Click on submit to send the form
         submitButton.click();
     }
 
-    public String getAlertMessage(){
+    public String getAlertMessageSuccess(){
         WebElement alertMessageSuccessfully = (new WebDriverWait(driver,10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".alert.alert-success")));
 
         return alertMessageSuccessfully.getText();
+    }
+
+    public String getAlertMessageDanger(){
+        WebElement alertMessageDanger = (new WebDriverWait(driver,10))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                        By.xpath(".//div[@class='alert alert-danger']")));
+
+        return alertMessageDanger.getText();
+    }
+
+    public String getFormError(){
+        WebElement formError = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath(".//*[@id='center_column']/form/fieldset//p[@class='form-group form-error']")));
+
+        return formError.getText();
     }
 }
