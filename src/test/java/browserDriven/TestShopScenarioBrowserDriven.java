@@ -1,18 +1,20 @@
-package testcases;
+package browserDriven;
 
 import browser.BrowserFactoryAdvanced;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
-public class TestShopScenario {
+public class TestShopScenarioBrowserDriven {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
 
+    @Parameters("browser")
     @BeforeMethod
-    public void setUp(){
+    public void setUp(BrowserFactoryAdvanced.Browser browser){
         //init driver
         //ChromeDriverManager.getInstance().setup();
         //driver = new ChromeDriver();
@@ -24,7 +26,10 @@ public class TestShopScenario {
         //driver = BrowserFactoryMedior.getDriver("Chrome");
 
         //new advanced method with enum to init driver
-        driver = BrowserFactoryAdvanced.setBrowser(BrowserFactoryAdvanced.Browser.CHROME);
+        //driver = BrowserFactoryAdvanced.setBrowser(BrowserFactoryAdvanced.Browser.CHROME);
+
+        //new BrowserDriven method to set driver
+        driver = BrowserFactoryAdvanced.setBrowser(browser);
 
         //init wait for explicit
         wait = new WebDriverWait(driver,10);
