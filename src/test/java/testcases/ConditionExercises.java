@@ -2,7 +2,7 @@ package testcases;
 
 import org.testng.annotations.Test;
 
-public class conditionExercises {
+public class ConditionExercises {
 
     public void bootcampAgeChecker(int age){
 

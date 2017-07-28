@@ -1,8 +1,7 @@
 package testcases;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
+import browser.BrowserFactoryAdvanced;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,15 +13,26 @@ public class TestShopScenario {
 
     @BeforeMethod
     public void setUp(){
-        //init ChromeDriver
-        ChromeDriverManager.getInstance().setup();
-        driver = new ChromeDriver();
+        //init driver
+        //ChromeDriverManager.getInstance().setup();
+        //driver = new ChromeDriver();
+
+        //new basic method to init driver
+        //driver = BrowserFactoryBasic.getDriver("chrome");
+
+        //new medior method to init driver
+        //driver = BrowserFactoryMedior.getDriver("Chrome");
+
+        //new advanced method with enum to init driver
+        driver = BrowserFactoryAdvanced.setBrowser(BrowserFactoryAdvanced.Browser.CHROME);
 
         //init wait for explicit
         wait = new WebDriverWait(driver,10);
 
-        //Maximize the window and open the website
-        driver.manage().window().maximize();
+        //Maximize the window
+        //driver.manage().window().maximize();
+
+        //Go to the website
         driver.get("https://techblog.polteq.com/testshop/index.php");
     }
 

@@ -11,14 +11,14 @@ public class FillInContactFormTest extends TestShopScenario{
     @Test
     public void fillInContactForm(){
 
-        //Reference to HomePage
+        //Reference to pages
         HomePage homePage = new HomePage(driver);
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
 
         //Click on button "Contact us"
         homePage.clickContactUs();
 
         //Fill in contact form
-        ContactUsPage contactUsPage = new ContactUsPage(driver);
         contactUsPage.fillInContactForm("Customer service", "cedric.nuyts@polteq.com", "123456", "Dit is een test.");
 
         //Send the form
