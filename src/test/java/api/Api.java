@@ -7,8 +7,8 @@ import static org.hamcrest.Matchers.*;
 
 public class Api {
 
-    String season = "2016";
-    String driver = "max_verstappen";
+    private String season = "2016";
+    private String driver = "max_verstappen";
 
     @Test
     public void getStatusCodeOfUrlResultsMaxVerstappen(){
